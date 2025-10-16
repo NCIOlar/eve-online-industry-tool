@@ -172,7 +172,7 @@ def generate_reaction_sheet(prev_sheet,count, price_control):
     reaction_df = reaction_df.reset_index(drop=True)
     for i, (idx, row) in enumerate(reaction_df.iterrows(), start=2):  # start=2 for Excel rows
         existing_formula = str(row["总需求"])  # convert to string to avoid issues
-        reaction_df.at[idx, "总需求"] = f"=({existing_formula[1:]}/ReactionFormulas{count}!C{i})*ROUNDUP(ReactionFormulas{count}!G{i}*ReactionFormulas{count}!H{i},0)"
+        reaction_df.at[idx, "总需求"] = f"=(({existing_formula[1:]})/ReactionFormulas{count}!C{i})*ROUNDUP(ReactionFormulas{count}!G{i}*ReactionFormulas{count}!H{i},0)"
     #Drop base name helper colume
     reaction_df = reaction_df.drop(columns=["Base Name"])
 
@@ -429,7 +429,7 @@ def name_to_id(names):
 if __name__ == "__main__":
 
 
-    names = ["伊什塔级蓝图","皇冠蜥级蓝图"]
+    names = ["泽尼塔级蓝图"]
     ids = name_to_id(names)
     items.set_index("id", inplace=True)
     runs = 10
